@@ -4,7 +4,7 @@ The net_attack.py script will automate the process of discovering weak usernames
 ## usage
 net_attack.py [-h] [-t IP ADDRESSES] [-p PORTS] [-u USERNAME] [-f PASSWORDS] [-d FİLE]
 
--h, --help    show this help message and exit
+-h, --help    show this help message and exit \n 
 -t IP ADDRESSES  Filename for a file containing a list of IP addresses
 -p PORTS    Ports to scan on the target host
 -u USERNAME    A username
