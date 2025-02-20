@@ -1,23 +1,66 @@
-# Attack-Simulation
-The net_attack.py script will automate the process of discovering weak usernames and passwords being used for services running on a host. The script will read a file containing a list of IP addresses. For each IP address in the list the script will scan the ports on that host, and attempt to bruteforce the login for detected services.
+# Net Attack Tool
 
+## Overview
 
+Net Attack Tool is an automated attack script designed to scan networks, identify reachable hosts, perform brute-force attacks on Telnet, SSH, and web login pages, and potentially deploy payloads to compromised systems.
 
-## usage
-net_attack.py [-h] [-t IP ADDRESSES] [-p PORTS] [-u USERNAME] [-f PASSWORDS] [-d FİLE]
+## Features
 
--h, --help    show this help message and exit
+- Reads a list of IP addresses from a file
+- Checks if the target IPs are reachable using ICMP ping
+- Scans specified ports to check if they are open
+- Performs brute-force attacks on:
+  - Telnet (port 23)
+  - SSH (port 22)
+  - Web login pages (default `login.php`)
+- Deploys files to compromised machines
+- Sends and executes commands on target machines
+- Supports local network scanning
+- Enables propagation to new targets
 
--t IP ADDRESSES  Filename for a file containing a list of IP addresses
+## Dependencies
 
--p PORTS    Ports to scan on the target host
+The script requires the following Python libraries:
 
--u USERNAME    A username
+- `sys`
+- `scapy`
+- `telnetlib`
+- `paramiko`
+- `requests`
+- `time`
+- `socket`
 
--f PASSWORDS   Filename for a file containing a list of passwords
+To install missing dependencies, run:
 
--d File to deploy on target machine
+```sh
+pip install scapy paramiko requests
+```
 
--L Local scan
+## Usage
 
--P Propagate
+```
+usage: net_attack.py [-h] [-t IP ADDRESSES] [-p PORTS] [-u USERNAME] [-f PASSWORDS] [-d FILE]
+
+Attack Automation Tool
+
+options:
+  -h, --help        Show this help message and exit
+  -t IP ADDRESSES   Filename for a file containing a list of IP addresses
+  -p PORTS          Ports to scan on the target host (comma-separated)
+  -u USERNAME       A username for brute-force attempts
+  -f PASSWORDS      Filename for a file containing a list of passwords
+  -d FILE           File to deploy on the target machine
+  -L                Local scan
+  -P                Enable propagation
+```
+
+## Example Usage
+
+```sh
+python3 net_attack.py -t targets.txt -p 22,23,80 -u admin -f passwords.txt -d payload.sh
+```
+
+## Disclaimer
+
+This tool is for educational and research purposes only. Unauthorized use against any system without permission is illegal and unethical.
+
